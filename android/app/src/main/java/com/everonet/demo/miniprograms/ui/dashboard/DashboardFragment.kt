@@ -36,7 +36,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
     fun startMiniProgram02(view: View) {
         Intent(requireActivity(), MyReactActivity::class.java).also {
             it.putExtra(MyReactActivity.EXTRA_APP_ID, "mini02")
-            it.putExtra(MyReactActivity.EXTRA_MODULE_NAME, "MyReactNativeApp")
+            it.putExtra(MyReactActivity.EXTRA_MODULE_NAME, "TicTacToe")
             startActivity(it)
         }
     }
