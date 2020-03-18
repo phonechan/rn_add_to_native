@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.everonet.demo.miniprograms.MyReactActivity
 import com.everonet.demo.miniprograms.R
 import com.everonet.demo.miniprograms.base.BaseFragment
 import com.everonet.demo.miniprograms.databinding.FragmentDashboardBinding
-import com.everonet.demo.miniprograms.flutter.FlutterContainerActivity
 
 class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
 
@@ -26,7 +26,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
     }
 
     fun startMiniProgram(view: View) {
-        Intent(requireActivity(), FlutterContainerActivity::class.java).also {
+        Intent(requireActivity(), MyReactActivity::class.java).also {
             startActivity(it)
         }
     }
