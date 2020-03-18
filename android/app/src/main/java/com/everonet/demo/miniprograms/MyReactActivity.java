@@ -31,7 +31,7 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
                 .build();
         // The string here (e.g. "MyReactNativeApp") has to match
         // the string in AppRegistry.registerComponent() in index.js
-        mReactRootView.startReactApplication(mReactInstanceManager, "MyReactNativeApp", null);
+        mReactRootView.startReactApplication(mReactInstanceManager, "MyProject", null);
 
         setContentView(mReactRootView);
     }
