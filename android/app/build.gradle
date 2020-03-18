@@ -71,4 +71,6 @@ dependencies {
     // AndroidX Lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    implementation "com.facebook.react:react-native:+" // From node_modules
 }
