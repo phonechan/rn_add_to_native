@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="main">#0F23DE</color>
+    <color name="mainTransparent">#660F23DE</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="grayDark">#666666</color>
+    <color name="grayLine">#A5A5A5</color>
+    <color name="grayLineDialog">#FFCDCED2</color>
+    <color name="blueDialogBtn">#FF0076FF</color>
+    <color name="grayTextLabel">#FF2C2C2C</color>
+    <color name="grayTextHint">#B4B5C0</color>
+    <color name="grayTextVersion">#969696</color>
+    <color name="blueLight">#4B6183</color>
+    <color name="redWarning">#E81F1F</color>
+    <color name="grayDisable">#D0D2DF</color>
+    <color name="grayCancel">#858585</color>
+</resources>
