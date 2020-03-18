@@ -25,8 +25,18 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
         })
     }
 
-    fun startMiniProgram(view: View) {
+    fun startMiniProgram01(view: View) {
         Intent(requireActivity(), MyReactActivity::class.java).also {
+            it.putExtra(MyReactActivity.EXTRA_APP_ID, "mini01")
+            it.putExtra(MyReactActivity.EXTRA_MODULE_NAME, "MyProject")
+            startActivity(it)
+        }
+    }
+
+    fun startMiniProgram02(view: View) {
+        Intent(requireActivity(), MyReactActivity::class.java).also {
+            it.putExtra(MyReactActivity.EXTRA_APP_ID, "mini02")
+            it.putExtra(MyReactActivity.EXTRA_MODULE_NAME, "MyReactNativeApp")
             startActivity(it)
         }
     }

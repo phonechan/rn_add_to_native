@@ -4,6 +4,8 @@
     package="com.everonet.demo.miniprograms">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".App"
@@ -25,7 +27,9 @@
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
         <activity
             android:name=".MyReactActivity"
-            android:label="@string/app_name"
+            android:label="My Mini Program"
+            android:launchMode="singleTask"
+            android:taskAffinity=".mini0"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".MainActivity"
