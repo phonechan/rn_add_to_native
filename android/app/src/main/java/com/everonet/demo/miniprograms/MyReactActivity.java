@@ -16,6 +16,8 @@ import com.facebook.react.common.LifecycleState;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 
 import java.io.File;
 
@@ -50,7 +52,7 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
 
         Log.i(TAG, path);
 
-        mReactRootView = new ReactRootView(this);
+        mReactRootView = new RNGestureHandlerEnabledRootView(this);
         mReactInstanceManager = ReactInstanceManager.builder()
                 .setApplication(getApplication())
                 .setCurrentActivity(this)
@@ -59,6 +61,7 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
                 .setJSMainModulePath("index")
                 .addPackage(new MainReactPackage())
                 .addPackage(new VectorIconsPackage())
+                .addPackage(new RNGestureHandlerPackage())
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
                 .build();

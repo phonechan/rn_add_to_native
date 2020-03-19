@@ -99,5 +99,6 @@ dependencies {
     }
 
     implementation "com.facebook.react:react-native:+" // From node_modules
-    api project(':react-native-vector-icons')
+    implementation project(':react-native-vector-icons')
+    implementation project(':react-native-gesture-handler')
 }

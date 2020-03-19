@@ -6,6 +6,16 @@
     "start": "yarn react-native start"
   },
   "dependencies": {
+    "color": "1.0.3",
+    "lodash": "4.17.10",
+    "moment": "2.13.0",
+    "native-base": "2.12.1",
+    "prop-types": "^15.6.2",
+    "react-native-gesture-handler": "^1.0.15",
+    "react-navigation": "3.3.0",
+    "scheduler": "^0.12.0",
+    "styled-components": "^3.4.5",
+
     "react": "16.9.0",
     "react-native": "^0.61.5",
     "react-native-vector-icons": "^6.6.0"
