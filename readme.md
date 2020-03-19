@@ -7,6 +7,7 @@
 * 内部开发同事，快速配置
 
 ```shell
+
 // React Native CLI Quickstart 
 // macOS
 
@@ -31,6 +32,7 @@ https://reactnative.dev/docs/getting-started
 ### 运行项目
 
 ```shell
+
 $ git clone git@github.com:phonechan/rn_add_to_native.git
 $ cd rn_add_to_native
 
@@ -86,4 +88,28 @@ $ adb push ./ /sdcard/cil_react/mini02/
 
 ```
 
+* 一些关键代码
+
+```java
+
+/**
+ * 启动小程序的 Activity
+ * "mini02" -> 小程序的目录
+ * "TicTacToe" -> module_name
+ */
+MyReactActivity.startActivity(activity, "mini02", "TicTacToe")
+
+/**
+ * 在 Application 中，需作修改
+ */ 
+class App : Application() {
+
+    override fun onCreate() {
+        super.onCreate()
+        // 需要增加这行代码
+        SoLoader.init(this, false)
+    }
+}
+
+```
 
