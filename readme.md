@@ -26,7 +26,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 * 详细配置流程，参考官方文档
 
-(https://reactnative.dev/docs/getting-started)[https://reactnative.dev/docs/getting-started]
+https://reactnative.dev/docs/getting-started
 
 ### 运行项目
 
