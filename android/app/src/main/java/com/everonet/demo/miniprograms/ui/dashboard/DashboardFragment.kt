@@ -1,6 +1,5 @@
 package com.everonet.demo.miniprograms.ui.dashboard
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -26,18 +25,10 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
     }
 
     fun startMiniProgram01(view: View) {
-        Intent(requireActivity(), MyReactActivity::class.java).also {
-            it.putExtra(MyReactActivity.EXTRA_APP_ID, "mini01")
-            it.putExtra(MyReactActivity.EXTRA_MODULE_NAME, "MyProject")
-            startActivity(it)
-        }
+        MyReactActivity.startActivity(activity, "mini01", "MyProject")
     }
 
     fun startMiniProgram02(view: View) {
-        Intent(requireActivity(), MyReactActivity::class.java).also {
-            it.putExtra(MyReactActivity.EXTRA_APP_ID, "mini02")
-            it.putExtra(MyReactActivity.EXTRA_MODULE_NAME, "TicTacToe")
-            startActivity(it)
-        }
+        MyReactActivity.startActivity(activity, "mini02", "TicTacToe")
     }
 }

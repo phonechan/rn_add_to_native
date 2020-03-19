@@ -30,7 +30,7 @@
             android:label="My Mini Program"
             android:launchMode="singleTask"
             android:taskAffinity=".mini0"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
