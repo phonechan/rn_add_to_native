@@ -25,7 +25,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
     }
 
     fun startMiniProgram01(view: View) {
-        MyReactActivity.startActivity(activity, "mini01", "MyProject")
+        MyReactActivity.startActivity(activity, "mini01", "example")
     }
 
     fun startMiniProgram02(view: View) {
