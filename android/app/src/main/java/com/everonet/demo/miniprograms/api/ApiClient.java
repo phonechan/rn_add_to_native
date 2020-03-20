@@ -3,9 +3,11 @@ package com.everonet.demo.miniprograms.api;
 import android.util.Log;
 
 import com.everonet.demo.miniprograms.BaseApp;
-import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.everonet.demo.miniprograms.R;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLSocketFactory;
@@ -18,6 +20,7 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 
 /**
@@ -25,6 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ApiClient {
     private static volatile Retrofit retrofit;
+    private static volatile Retrofit retrofitdown;
 
     private static final String TAG = ApiClient.class.getSimpleName();
 
@@ -44,8 +48,26 @@ public class ApiClient {
         return retrofit;
     }
 
+    public static Retrofit getInstanceDown() {
+        if (retrofitdown == null) {
+            synchronized (ApiClient.class) {
+                if (retrofitdown == null) {
+                    ExecutorService executorService = Executors.newFixedThreadPool(1);
+                    retrofitdown = new Retrofit.Builder()
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .baseUrl("http://mini-demo.everonet.com:8080/")
+                            .client(getOkHttpClient())
+                            .callbackExecutor(executorService)
+                            .build();
+                }
+            }
+        }
+
+        return retrofitdown;
+    }
+
     private static OkHttpClient getOkHttpClient() {
-        int[] certificates = {};
+        int[] certificates = {R.raw.digicert};
 
         SSLSocketFactory socketFactory = HttpsFactory.getSSLSocketFactory(BaseApp.getAppContext(), certificates);
 
@@ -81,6 +103,10 @@ public class ApiClient {
 
     public static MiniAppService getAPI() {
         return getInstance().create(MiniAppService.class);
+    }
+
+    public static MiniAppService getDownAPI() {
+        return getInstanceDown().create(MiniAppService.class);
     }
 
 }
