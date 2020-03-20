@@ -1,4 +1,4 @@
-package com.everonet.demo.miniprograms.utils;
+package com.everonet.demo.miniprograms.util;
 
 import android.util.Log;
 

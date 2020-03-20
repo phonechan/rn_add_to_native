@@ -9,7 +9,7 @@ import com.everonet.demo.miniprograms.MyReactActivity
 import com.everonet.demo.miniprograms.R
 import com.everonet.demo.miniprograms.base.BaseFragment
 import com.everonet.demo.miniprograms.databinding.FragmentDashboardBinding
-import com.everonet.demo.miniprograms.utils.ZipUtils
+import com.everonet.demo.miniprograms.util.ZipUtils
 import java.io.File
 
 class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
