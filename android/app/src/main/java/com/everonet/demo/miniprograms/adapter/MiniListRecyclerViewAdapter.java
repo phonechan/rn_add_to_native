@@ -43,7 +43,7 @@ public class MiniListRecyclerViewAdapter extends RecyclerView.Adapter<MiniListRe
 
         if (miniAppInfo != null) {
 //            Glide.with(mContext).load(miniAppInfo.getIcon_uri()).centerCrop().into(holder.appIcon);
-            glideImage(miniAppInfo.getIcon_uri(),holder.appIcon);
+            glideImage(miniAppInfo.getIcon_uri(), holder.appIcon);
             holder.appName.setText(miniAppInfo.getDisplay_name());
         }
     }
@@ -100,7 +100,7 @@ public class MiniListRecyclerViewAdapter extends RecyclerView.Adapter<MiniListRe
     }
 
     public void glideImage(String url, ImageView iv) {
-        RequestOptions options = new RequestOptions().placeholder(R.drawable.ic_pm_mark);
+        RequestOptions options = new RequestOptions().placeholder(R.drawable.ic_image_loading);
         Glide.with(mContext)
                 .load(url)
                 .apply(options)

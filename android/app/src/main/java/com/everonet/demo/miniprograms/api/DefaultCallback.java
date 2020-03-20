@@ -3,6 +3,7 @@ package com.everonet.demo.miniprograms.api;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -21,6 +22,9 @@ public abstract class DefaultCallback<T> implements Callback<T> {
 
     public DefaultCallback(@NonNull Context ctx) {
         this.mCtx = ctx;
+    }
+
+    public DefaultCallback() {
     }
 
     @Override
