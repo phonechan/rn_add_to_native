@@ -38,5 +38,12 @@
             android:text="start mini02 program"
             android:textAllCaps="false" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{holder::unzip}"
+            android:text="unzip"
+            android:textAllCaps="false" />
+
     </LinearLayout>
 </layout>

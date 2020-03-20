@@ -83,6 +83,9 @@ $ react-native bundle --platform android --dev false --entry-file index.js --bun
 ├── drawable-xxxhdpi
 └── index.android.bundle // 压缩的 JS 代码
 
+// zip 压缩产物
+$ zip -rq mini01.zip ./
+
 // 将当前路径下所有的文件和目录推到手机
 $ adb push ./ /sdcard/cil_react/mini02/
 
