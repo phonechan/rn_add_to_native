@@ -2,7 +2,6 @@ package com.everonet.demo.miniprograms.api;
 
 import android.util.Log;
 
-
 import com.everonet.demo.miniprograms.BaseApp;
 import com.everonet.demo.miniprograms.R;
 
@@ -96,6 +95,7 @@ public class ApiClient {
             builder.sslSocketFactory(socketFactory);
         }
 
+        builder.addNetworkInterceptor(new StethoInterceptor());
 
         return builder.build();
     }
