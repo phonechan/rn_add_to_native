@@ -101,7 +101,7 @@ public class MiniListRecyclerViewAdapter extends RecyclerView.Adapter<MiniListRe
     }
 
     public void glideImage(String url, ImageView iv) {
-        RequestOptions options = new RequestOptions().placeholder(R.drawable.ic_image_loading);
+        RequestOptions options = new RequestOptions().placeholder(R.drawable.ic_mini_defalut);
         Glide.with(mContext)
                 .load(url)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
