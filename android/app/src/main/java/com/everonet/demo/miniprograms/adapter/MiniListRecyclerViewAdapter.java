@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.everonet.demo.miniprograms.R;
 import com.everonet.demo.miniprograms.model.MiniAppRespone;
@@ -103,6 +104,7 @@ public class MiniListRecyclerViewAdapter extends RecyclerView.Adapter<MiniListRe
         RequestOptions options = new RequestOptions().placeholder(R.drawable.ic_image_loading);
         Glide.with(mContext)
                 .load(url)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .apply(options)
                 .into(iv);
     }
