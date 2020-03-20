@@ -4,8 +4,12 @@ package com.everonet.demo.miniprograms.ui.mini;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -41,10 +45,13 @@ public class MiniAppDetailActivity extends AppCompatActivity {
     private int version;
     private MiniAppRespone.ResultEntity miniAppRespone = new MiniAppRespone.ResultEntity();
 
+    private ProgressBar progress;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_miniapp_detail);
+        progress = findViewById(R.id.progress);
         gid = getIntent().getStringExtra(GID);
         moduleName = getIntent().getStringExtra(MODULE_NAME);
         if (TextUtils.isEmpty(gid)) {
@@ -193,40 +200,68 @@ public class MiniAppDetailActivity extends AppCompatActivity {
                     @Override
                     public void onDownloadSuccess(File file) {
                         Log.i(TAG, "+++ onDownloadSuccess +++");
-
-                        //下载完成进行相关逻辑操作
-                        // 解压缩
-                        String pathIn = App.instance.getExternalCacheDir() + FileUtils.PATH_DOWNLOAD + gid + "_" + version;
-                        String pathOut = App.instance.getExternalCacheDir() + FileUtils.PATH_DOWNLOAD + gid;
-                        try {
-
-                            ZipUtils.unzip(pathIn, pathOut);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-                        //文件下载到本地成功，新的version写到SP中
-                        SaveData.getInstance().saveMiniVersion(App.instance, gid, version);
-
-                        MyReactActivity.startActivity(MiniAppDetailActivity.this, gid, moduleName);
-                        MiniAppDetailActivity.this.finish();
+                        Message msg = mHandler.obtainMessage();
+                        msg.what = 0;
+                        mHandler.sendMessage(msg);
 
                     }
 
                     @Override
                     public void onDownloading(int progress) {
                         Log.i(TAG, "+++ onDownloading +++" + progress);
-
+                        Message msg = mHandler.obtainMessage();
+                        msg.what = 11;
+                        msg.obj = progress;
+                        mHandler.sendMessage(msg);
                     }
 
                     @Override
                     public void onDownloadFailed(Exception e) {
                         //下载异常进行相关提示操作
                         Log.i(TAG, "+++ onDownloadFailed +++");
-                        MiniAppDetailActivity.this.finish();
+                        Message msg = mHandler.obtainMessage();
+                        msg.what = 1;
+                        msg.obj = e;
+                        mHandler.sendMessage(msg);
                     }
                 });
 
     }
+
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+
+                case 11:
+                    Integer p = (Integer) msg.obj;
+                    progress.setVisibility(View.VISIBLE);
+                    progress.setProgress(p);
+                    break;
+                case 0:
+                    //下载完成进行相关逻辑操作
+                    // 解压缩
+                    String pathIn = App.instance.getExternalCacheDir() + FileUtils.PATH_DOWNLOAD + gid + "_" + version;
+                    String pathOut = App.instance.getExternalCacheDir() + FileUtils.PATH_DOWNLOAD + gid;
+                    try {
+
+                        ZipUtils.unzip(pathIn, pathOut);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    //文件下载到本地成功，新的version写到SP中
+                    SaveData.getInstance().saveMiniVersion(App.instance, gid, version);
+
+                    MyReactActivity.startActivity(MiniAppDetailActivity.this, gid, moduleName);
+                    MiniAppDetailActivity.this.finish();
+                    break;
+                case 1:
+                    MiniAppDetailActivity.this.finish();
+                    break;
+            }
+        }
+    };
 
 }
