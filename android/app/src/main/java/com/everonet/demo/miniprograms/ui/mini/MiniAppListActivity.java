@@ -58,6 +58,7 @@ public class MiniAppListActivity extends AppCompatActivity {
                 mIntent.putExtra(MiniAppDetailActivity.GID, resultEntity.getGid());
                 mIntent.putExtra(MiniAppDetailActivity.MODULE_NAME, resultEntity.getModule_name());
                 startActivity(mIntent);
+                overridePendingTransition(R.anim.react_enter, R.anim.react_exit);
             });
         }
         mRvMiniApp.setLayoutManager(new LinearLayoutManager(this));
@@ -100,6 +101,5 @@ public class MiniAppListActivity extends AppCompatActivity {
     public static void startActivity(Activity activity) {
         Intent intent = new Intent(activity, MiniAppListActivity.class);
         activity.startActivity(intent);
-        activity.overridePendingTransition(R.anim.react_enter, R.anim.react_exit);
     }
 }

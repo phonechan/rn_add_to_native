@@ -45,7 +45,7 @@
             android:name=".ui.mini.MiniAppListActivity"
             android:label="Mini Program List"
             android:screenOrientation="portrait"
-            android:theme="@style/FullScreen" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.mini.MiniAppDetailActivity"
             android:label="Mini Program List"
