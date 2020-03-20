@@ -18,6 +18,7 @@ import com.everonet.demo.miniprograms.R;
 import com.everonet.demo.miniprograms.api.ApiClient;
 import com.everonet.demo.miniprograms.api.DefaultCallback;
 import com.everonet.demo.miniprograms.model.MiniAppRespone;
+import com.everonet.demo.miniprograms.util.DownloadUtil;
 import com.everonet.demo.miniprograms.util.FileUtils;
 import com.everonet.demo.miniprograms.util.SaveData;
 import com.everonet.demo.miniprograms.util.ZipUtils;
@@ -67,7 +68,8 @@ public class MiniAppDetailActivity extends AppCompatActivity {
                         Log.d(TAG, "new version = " + miniAppRespone.getVersion());
                         if (SaveData.getInstance().getMiniVersion(ctx, gid) < miniAppRespone.getVersion()) { //本地版本号 < 网络版本号
                             if (!TextUtils.isEmpty(miniAppRespone.getBundle_uri())) {
-                                downloadMiniProgramFileSync(miniAppRespone.getBundle_uri(), miniAppRespone.getGid());
+//                                downloadMiniProgramFileSync(miniAppRespone.getBundle_uri(), miniAppRespone.getGid());
+                                downFile(miniAppRespone.getBundle_uri(), miniAppRespone.getGid(), miniAppRespone.getVersion());
                             }
                             version = miniAppRespone.getVersion();
                         } else {
@@ -180,6 +182,51 @@ public class MiniAppDetailActivity extends AppCompatActivity {
         } catch (IOException e) {
             return false;
         }
+    }
+
+    /**
+     * 文件下载
+     */
+    private void downFile(String url, String gid, int version) {
+        DownloadUtil.get().download(url, App.instance.getExternalCacheDir() + FileUtils.PATH_DOWNLOAD, gid + "_" + version,
+                new DownloadUtil.OnDownloadListener() {
+                    @Override
+                    public void onDownloadSuccess(File file) {
+                        Log.i(TAG, "+++ onDownloadSuccess +++");
+
+                        //下载完成进行相关逻辑操作
+                        // 解压缩
+                        String pathIn = App.instance.getExternalCacheDir() + FileUtils.PATH_DOWNLOAD + gid + "_" + version;
+                        String pathOut = App.instance.getExternalCacheDir() + FileUtils.PATH_DOWNLOAD + gid;
+                        try {
+
+                            ZipUtils.unzip(pathIn, pathOut);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        //文件下载到本地成功，新的version写到SP中
+                        SaveData.getInstance().saveMiniVersion(App.instance, gid, version);
+
+                        MyReactActivity.startActivity(MiniAppDetailActivity.this, gid, moduleName);
+                        MiniAppDetailActivity.this.finish();
+
+                    }
+
+                    @Override
+                    public void onDownloading(int progress) {
+                        Log.i(TAG, "+++ onDownloading +++" + progress);
+
+                    }
+
+                    @Override
+                    public void onDownloadFailed(Exception e) {
+                        //下载异常进行相关提示操作
+                        Log.i(TAG, "+++ onDownloadFailed +++");
+                        MiniAppDetailActivity.this.finish();
+                    }
+                });
+
     }
 
 }

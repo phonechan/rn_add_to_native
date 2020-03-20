@@ -66,7 +66,7 @@ public class ApiClient {
         return retrofitdown;
     }
 
-    private static OkHttpClient getOkHttpClient() {
+    public static OkHttpClient getOkHttpClient() {
         int[] certificates = {R.raw.digicert};
 
         SSLSocketFactory socketFactory = HttpsFactory.getSSLSocketFactory(App.instance, certificates);
@@ -86,10 +86,10 @@ public class ApiClient {
                                 .body(ResponseBody.create(response.body().contentType(), bodyString)).build();
                     }
                 })
-                .connectTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(true)
-                .writeTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS);
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS);
         HttpCommonInterceptor commonInterceptor = new HttpCommonInterceptor.Builder().build();
         builder.addInterceptor(commonInterceptor);
         if (socketFactory != null) {
