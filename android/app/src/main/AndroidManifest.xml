@@ -4,12 +4,12 @@
     package="com.everonet.demo.miniprograms">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".App"
+        android:name=".BaseApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -41,6 +41,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.mini.MiniAppListActivity"
+            android:label="Mini Program List"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".ui.mini.MiniAppDetailActivity"
+            android:label="Mini Program List"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreen" />
     </application>
 
 </manifest>
