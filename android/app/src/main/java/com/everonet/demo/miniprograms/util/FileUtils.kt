@@ -7,9 +7,6 @@ import java.security.MessageDigest
 object FileUtils {
 
     const val PATH_DOWNLOAD = "/download/"
-    const val PATH_DOWNLOAD_PDF = "/download/pdf/"
-    const val PATH_UPLOAD_IMG = "/upload/img/"
-    const val PATH_UPLOAD_ECG = "/upload/ecg/"
 
     @JvmStatic
     fun createNewFile(context: Context, filePath: String, fileName: String): File {
@@ -45,25 +42,6 @@ object FileUtils {
     fun exists(filePath: String, fileName: String): Boolean {
         val file = File(filePath, fileName)
         return file.exists()
-    }
-
-    @JvmStatic
-    fun reportExists(context: Context, fileName: String): Boolean {
-        val path = "${context.externalCacheDir}$PATH_DOWNLOAD_PDF"
-        return exists(path, fileName)
-    }
-
-    @JvmStatic
-    fun reportFile(context: Context, fileName: String): File {
-        val path = "${context.externalCacheDir}$PATH_DOWNLOAD_PDF"
-        return File(path, fileName)
-    }
-
-    @JvmStatic
-    fun saveEcgFile(context: Context, fileName: String, content: String): String {
-        val file = createNewFile(context, PATH_UPLOAD_ECG, fileName)
-        file.writeText(content, Charsets.UTF_8)
-        return file.path
     }
 
     @JvmStatic
