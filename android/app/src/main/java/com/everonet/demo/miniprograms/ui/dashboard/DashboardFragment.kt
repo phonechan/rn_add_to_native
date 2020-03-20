@@ -35,6 +35,10 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
         MyReactActivity.startActivity(activity, "mini02", "TicTacToe")
     }
 
+    fun startMiniProgram03(view: View) {
+        MyReactActivity.startActivity(activity, "mini03", "HotUpdateDemo")
+    }
+
     fun unzip(view: View) {
         val pathIn = Environment.getExternalStorageDirectory().absolutePath + File.separator + "1/Ge89c3ed65bf141758aa240e30e9c67ec_1.bundle"
         val pathOut =
