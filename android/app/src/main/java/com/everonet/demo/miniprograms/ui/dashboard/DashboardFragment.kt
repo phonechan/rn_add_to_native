@@ -36,9 +36,9 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
     }
 
     fun unzip(view: View) {
-        val pathIn = Environment.getExternalStorageDirectory().absolutePath + File.separator + "1/mini01.zip"
+        val pathIn = Environment.getExternalStorageDirectory().absolutePath + File.separator + "1/Ge89c3ed65bf141758aa240e30e9c67ec_1.bundle"
         val pathOut =
-            Environment.getExternalStorageDirectory().absolutePath + File.separator + "1"
+            Environment.getExternalStorageDirectory().absolutePath + File.separator + "1/Ge89c3ed65bf141758aa240e30e9c67ec"
         ZipUtils.unzip(pathIn, pathOut)
     }
 }
