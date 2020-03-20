@@ -12,12 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.everonet.demo.miniprograms.BaseApp;
+import com.everonet.demo.miniprograms.App;
+import com.everonet.demo.miniprograms.MyReactActivity;
 import com.everonet.demo.miniprograms.R;
 import com.everonet.demo.miniprograms.api.ApiClient;
 import com.everonet.demo.miniprograms.api.DefaultCallback;
 import com.everonet.demo.miniprograms.model.MiniAppRespone;
+import com.everonet.demo.miniprograms.util.FileUtils;
 import com.everonet.demo.miniprograms.util.SaveData;
+import com.everonet.demo.miniprograms.util.ZipUtils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -31,7 +34,9 @@ public class MiniAppDetailActivity extends AppCompatActivity {
     private static final String TAG = MiniAppDetailActivity.class.getSimpleName();
 
     public static final String GID = "gid";
+    public static final String MODULE_NAME = "MODULE_NAME";
     private String gid;
+    private String moduleName;
     private int version;
     private MiniAppRespone.ResultEntity miniAppRespone = new MiniAppRespone.ResultEntity();
 
@@ -40,6 +45,7 @@ public class MiniAppDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_miniapp_detail);
         gid = getIntent().getStringExtra(GID);
+        moduleName = getIntent().getStringExtra(MODULE_NAME);
         if (TextUtils.isEmpty(gid)) {
             finish();
             return;
@@ -66,8 +72,9 @@ public class MiniAppDetailActivity extends AppCompatActivity {
                             version = miniAppRespone.getVersion();
                         } else {
                             Log.d(TAG, "Don not need download");
+                            MyReactActivity.startActivity(MiniAppDetailActivity.this, gid, moduleName);
+                            MiniAppDetailActivity.this.finish();
                         }
-
                     }
 //                        hideWaitingDialog();
                 } else {
@@ -97,13 +104,11 @@ public class MiniAppDetailActivity extends AppCompatActivity {
 
             @Override
             protected Void doInBackground(Void... voids) {
-                ApiClient.getDownAPI().downloadFile(url).enqueue(new DefaultCallback<ResponseBody>(BaseApp.getAppContext()) {
+                ApiClient.getDownAPI().downloadFile(url).enqueue(new DefaultCallback<ResponseBody>(App.instance) {
                     @Override
                     public void onResponse(@NonNull Context ctx, ResponseBody data) {
                         boolean writtenToDisk = writeResponseBodyToDisk(data, fileName);
                         Log.d(TAG, "file download is success " + writtenToDisk);
-                        if (writtenToDisk)
-                            SaveData.getInstance().saveMiniVersion(ctx, gid, version);//文件下载到本地成功，新的version写到SP中
                     }
 
                     @Override
@@ -120,7 +125,7 @@ public class MiniAppDetailActivity extends AppCompatActivity {
     public boolean writeResponseBodyToDisk(ResponseBody body, String fileName) {
         try {
             Log.d(TAG, "writeResponseBodyToDisk: ");
-            File futureStudioIconFile = new File(getExternalFilesDir(null) + File.separator + fileName + "_" + version);
+            File futureStudioIconFile = FileUtils.createNewFile(App.instance, FileUtils.PATH_DOWNLOAD, fileName + "_" + version);
 
             InputStream inputStream = null;
             OutputStream outputStream = null;
@@ -150,8 +155,18 @@ public class MiniAppDetailActivity extends AppCompatActivity {
 
                 outputStream.flush();
 
+                // 解压缩
+                String pathIn = App.instance.getExternalCacheDir() + FileUtils.PATH_DOWNLOAD + fileName + "_" + version;
+                String pathOut = App.instance.getExternalCacheDir() + FileUtils.PATH_DOWNLOAD + fileName;
+                ZipUtils.unzip(pathIn, pathOut);
+
+                //文件下载到本地成功，新的version写到SP中
+                SaveData.getInstance().saveMiniVersion(App.instance, gid, version);
+
+                MyReactActivity.startActivity(this, gid, moduleName);
+                MiniAppDetailActivity.this.finish();
                 return true;
-            } catch (IOException e) {
+            } catch (Exception e) {
                 return false;
             } finally {
                 if (inputStream != null) {

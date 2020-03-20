@@ -1,16 +1,16 @@
 package com.everonet.demo.miniprograms.ui.dashboard
 
 import android.os.Bundle
-import android.os.Environment
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.everonet.demo.miniprograms.App
 import com.everonet.demo.miniprograms.MyReactActivity
 import com.everonet.demo.miniprograms.R
 import com.everonet.demo.miniprograms.base.BaseFragment
 import com.everonet.demo.miniprograms.databinding.FragmentDashboardBinding
+import com.everonet.demo.miniprograms.util.FileUtils
 import com.everonet.demo.miniprograms.util.ZipUtils
-import java.io.File
 
 class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
 
@@ -40,9 +40,16 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding>() {
     }
 
     fun unzip(view: View) {
-        val pathIn = Environment.getExternalStorageDirectory().absolutePath + File.separator + "1/Ge89c3ed65bf141758aa240e30e9c67ec_1.bundle"
-        val pathOut =
-            Environment.getExternalStorageDirectory().absolutePath + File.separator + "1/Ge89c3ed65bf141758aa240e30e9c67ec"
+//        val pathIn = Environment.getExternalStorageDirectory().absolutePath + File.separator + "1/Ge89c3ed65bf141758aa240e30e9c67ec_1.bundle"
+//        val pathOut =
+//            Environment.getExternalStorageDirectory().absolutePath + File.separator + "1/Ge89c3ed65bf141758aa240e30e9c67ec"
+
+
+        // 解压缩
+        val pathIn =
+            "${App.instance.externalCacheDir}${FileUtils.PATH_DOWNLOAD}G31f75ea1e3454e6b886ca6e4fe97971e_5"
+        val pathOut: String =
+            "${App.instance.externalCacheDir}${FileUtils.PATH_DOWNLOAD}G31f75ea1e3454e6b886ca6e4fe97971e"
         ZipUtils.unzip(pathIn, pathOut)
     }
 }

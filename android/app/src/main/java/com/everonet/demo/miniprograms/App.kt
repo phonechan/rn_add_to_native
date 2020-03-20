@@ -1,11 +1,16 @@
 package com.everonet.demo.miniprograms
 
-import android.content.Context
+import android.annotation.SuppressLint
 import androidx.multidex.MultiDexApplication
 import com.facebook.soloader.SoLoader
 import com.facebook.stetho.Stetho
 
 class App : MultiDexApplication() {
+
+    companion object {
+        @SuppressLint("StaticFieldLeak")
+        lateinit var instance: App
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -14,15 +19,4 @@ class App : MultiDexApplication() {
 
         Stetho.initializeWithDefaults(this)
     }
-
-    private var instance: App? = null
-
-    fun getInstance(): App? {
-        return instance
-    }
-
-    fun getAppContext(): Context? {
-        return instance
-    }
-
 }

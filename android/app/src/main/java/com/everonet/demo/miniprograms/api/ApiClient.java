@@ -2,8 +2,9 @@ package com.everonet.demo.miniprograms.api;
 
 import android.util.Log;
 
-import com.everonet.demo.miniprograms.BaseApp;
+import com.everonet.demo.miniprograms.App;
 import com.everonet.demo.miniprograms.R;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -20,7 +21,6 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 
 /**
@@ -69,7 +69,7 @@ public class ApiClient {
     private static OkHttpClient getOkHttpClient() {
         int[] certificates = {R.raw.digicert};
 
-        SSLSocketFactory socketFactory = HttpsFactory.getSSLSocketFactory(BaseApp.getAppContext(), certificates);
+        SSLSocketFactory socketFactory = HttpsFactory.getSSLSocketFactory(App.instance, certificates);
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {

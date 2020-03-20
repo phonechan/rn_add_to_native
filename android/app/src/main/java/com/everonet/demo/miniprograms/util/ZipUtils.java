@@ -20,6 +20,8 @@ public class ZipUtils {
      * @throws Exception
      */
     public static void unzip(String zipFileString, String outPathString) throws Exception {
+        Log.i(TAG, "in=" + zipFileString + " ,out=" + outPathString);
+
         ZipInputStream inZip = new ZipInputStream(new FileInputStream(zipFileString));
         ZipEntry zipEntry;
         String szName = "";
@@ -34,7 +36,6 @@ public class ZipUtils {
                 Log.i(TAG, outPathString + File.separator + szName);
                 File file = new File(outPathString + File.separator + szName);
                 if (!file.exists()) {
-                    Log.i(TAG, "Create the file:" + outPathString + File.separator + szName);
                     file.getParentFile().mkdirs();
                     file.createNewFile();
                 }

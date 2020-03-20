@@ -4,12 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.everonet.demo.miniprograms.util.FileUtils;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactRootView;
 import com.facebook.react.common.LifecycleState;
@@ -18,8 +18,6 @@ import com.facebook.react.shell.MainReactPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-
-import java.io.File;
 
 public class MyReactActivity extends Activity implements DefaultHardwareBackBtnHandler {
 
@@ -48,7 +46,7 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
         mMiniAppId = getIntent().getStringExtra(EXTRA_APP_ID);
         mModuleName = getIntent().getStringExtra(EXTRA_MODULE_NAME);
 
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "cil_react" + File.separator + mMiniAppId + "/index.android.bundle";
+        String path = App.instance.getExternalCacheDir() + FileUtils.PATH_DOWNLOAD + mMiniAppId + "/index.android.bundle";
 
         Log.i(TAG, path);
 

@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 
-import com.everonet.demo.miniprograms.BaseApp;
+import com.everonet.demo.miniprograms.App;
 
 /**
  * 保存信息
@@ -31,12 +31,12 @@ public class SaveData {
     }
 
     private SharedPreferences getPref(@NonNull Context context) {
-        Context ctx = context != null ? context : BaseApp.getAppContext();
+        Context ctx = context != null ? context : App.instance;
         return ctx.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
     }
 
     private SharedPreferences.Editor getEditor(@NonNull Context context) {
-        Context ctx = context != null ? context : BaseApp.getAppContext();
+        Context ctx = context != null ? context : App.instance;
         return getPref(ctx).edit();
     }
 

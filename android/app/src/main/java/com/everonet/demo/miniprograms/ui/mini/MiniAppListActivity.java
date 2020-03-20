@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +17,6 @@ import com.everonet.demo.miniprograms.adapter.MiniListRecyclerViewAdapter;
 import com.everonet.demo.miniprograms.api.ApiClient;
 import com.everonet.demo.miniprograms.api.DefaultCallback;
 import com.everonet.demo.miniprograms.model.MiniAppRespone;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +56,7 @@ public class MiniAppListActivity extends AppCompatActivity {
 
                 Intent mIntent = new Intent(this, MiniAppDetailActivity.class);
                 mIntent.putExtra(MiniAppDetailActivity.GID, resultEntity.getGid());
+                mIntent.putExtra(MiniAppDetailActivity.MODULE_NAME, resultEntity.getModule_name());
                 startActivity(mIntent);
             });
         }
