@@ -46,5 +46,38 @@
             android:layout_height="0.5dp"
             android:background="@color/grayLine" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:onClick="@{holder::startScan}"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/iv_scan_logo"
+                android:layout_width="80px"
+                android:layout_height="80px"
+                android:layout_margin="10dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_scan" />
+
+            <TextView
+                android:id="@+id/tx_scan_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="25px"
+                android:text="@string/scan"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/grayLine" />
+
     </LinearLayout>
 </layout>

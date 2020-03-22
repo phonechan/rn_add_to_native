@@ -7,6 +7,9 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <application
         android:name=".App"
@@ -49,6 +52,11 @@
         <activity
             android:name=".ui.mini.MiniAppDetailActivity"
             android:label="Mini Program List"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullScreen" />
+        <activity
+            android:name=".ui.mini.MiniScanActivity"
+            android:label="Mini Program Scan"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreen" />
     </application>

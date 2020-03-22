@@ -102,6 +102,8 @@ dependencies {
 
     implementation 'androidx.multidex:multidex:2.0.1'
 
+    implementation 'com.google.zxing:core:3.3.0'
+
     if (enableHermes) {
         // for RN 0.61+
         def hermesPath = "../../node_modules/hermes-engine/android/"

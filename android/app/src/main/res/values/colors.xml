@@ -19,4 +19,5 @@
     <color name="redWarning">#E81F1F</color>
     <color name="grayDisable">#D0D2DF</color>
     <color name="grayCancel">#858585</color>
+    <color name="colorBlue">#0089FF</color>
 </resources>

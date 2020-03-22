@@ -71,6 +71,9 @@ public class MiniAppDetailActivity extends AppCompatActivity {
                 if (data != null) {
                     if (data.getMini_app() != null) {
                         miniAppRespone = data.getMini_app();
+                        if (TextUtils.isEmpty(moduleName)){
+                            moduleName = miniAppRespone.getModule_name();
+                        }
                         Log.d(TAG, "local version = " + SaveData.getInstance().getMiniVersion(ctx, gid));
                         Log.d(TAG, "new version = " + miniAppRespone.getVersion());
                         if (SaveData.getInstance().getMiniVersion(ctx, gid) < miniAppRespone.getVersion()) { //本地版本号 < 网络版本号
