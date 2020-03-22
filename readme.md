@@ -116,3 +116,16 @@ class App : Application() {
 
 ```
 
+* 样例小程序二维码
+
+1、Mini_Demo_01（Ge89c3ed65bf141758aa240e30e9c67ec）
+
+![](./doc/Ge89c3ed65bf141758aa240e30e9c67ec.png)
+
+2、Mini_Demo_02_TicTacToe（G604563f9155d463a8f405f09f7ac3dac）
+
+![](./doc/G604563f9155d463a8f405f09f7ac3dac.png)
+
+3、Mini_Demo_03_HotUpdateDemo（G31f75ea1e3454e6b886ca6e4fe97971e）
+
+![](./doc/G31f75ea1e3454e6b886ca6e4fe97971e.png)

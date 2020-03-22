@@ -16,7 +16,7 @@ android {
     defaultConfig {
         multiDexEnabled true
         applicationId "com.everonet.demo.miniprograms"
-        minSdkVersion 16
+        minSdkVersion 24
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -87,7 +87,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
-    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02'
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'
@@ -101,6 +101,8 @@ dependencies {
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
 
     implementation 'androidx.multidex:multidex:2.0.1'
+
+    implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
 
     if (enableHermes) {
         // for RN 0.61+

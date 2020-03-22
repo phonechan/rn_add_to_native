@@ -51,6 +51,10 @@
             android:label="Mini Program List"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreen" />
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            tools:replace="screenOrientation" />
     </application>
 
 </manifest>

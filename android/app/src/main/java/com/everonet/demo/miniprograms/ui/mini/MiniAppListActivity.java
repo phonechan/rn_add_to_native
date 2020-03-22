@@ -53,12 +53,7 @@ public class MiniAppListActivity extends AppCompatActivity {
 
             mAdapter.setOnItemClickListener((v, position) -> {
                 MiniAppRespone.ResultEntity resultEntity = mData.get(position);
-
-                Intent mIntent = new Intent(this, MiniAppDetailActivity.class);
-                mIntent.putExtra(MiniAppDetailActivity.GID, resultEntity.getGid());
-                mIntent.putExtra(MiniAppDetailActivity.MODULE_NAME, resultEntity.getModule_name());
-                startActivity(mIntent);
-                overridePendingTransition(R.anim.react_enter, R.anim.react_exit);
+                MiniAppDetailActivity.startActivity(MiniAppListActivity.this, resultEntity.getGid());
             });
         }
         mRvMiniApp.setLayoutManager(new LinearLayoutManager(this));

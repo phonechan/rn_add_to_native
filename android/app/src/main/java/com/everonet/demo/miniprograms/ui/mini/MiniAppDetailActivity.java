@@ -1,7 +1,9 @@
 package com.everonet.demo.miniprograms.ui.mini;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -39,7 +41,6 @@ public class MiniAppDetailActivity extends AppCompatActivity {
     private static final String TAG = MiniAppDetailActivity.class.getSimpleName();
 
     public static final String GID = "gid";
-    public static final String MODULE_NAME = "MODULE_NAME";
     private String gid;
     private String moduleName;
     private int version;
@@ -47,13 +48,19 @@ public class MiniAppDetailActivity extends AppCompatActivity {
 
     private ProgressBar progress;
 
+    public static void startActivity(Activity activity, String gid) {
+        Intent intent = new Intent(activity, MiniAppDetailActivity.class);
+        intent.putExtra(MiniAppDetailActivity.GID, gid);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(R.anim.react_enter, R.anim.react_exit);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_miniapp_detail);
         progress = findViewById(R.id.progress);
         gid = getIntent().getStringExtra(GID);
-        moduleName = getIntent().getStringExtra(MODULE_NAME);
         if (TextUtils.isEmpty(gid)) {
             finish();
             return;
@@ -71,6 +78,7 @@ public class MiniAppDetailActivity extends AppCompatActivity {
                 if (data != null) {
                     if (data.getMini_app() != null) {
                         miniAppRespone = data.getMini_app();
+                        moduleName = miniAppRespone.getModule_name();
                         Log.d(TAG, "local version = " + SaveData.getInstance().getMiniVersion(ctx, gid));
                         Log.d(TAG, "new version = " + miniAppRespone.getVersion());
                         if (SaveData.getInstance().getMiniVersion(ctx, gid) < miniAppRespone.getVersion()) { //本地版本号 < 网络版本号

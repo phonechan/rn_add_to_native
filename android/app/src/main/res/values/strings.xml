@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MiniProgramsDemo</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Mini Programs</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">Mini Dev</string>
+    <string name="title_notifications">Mini Programs</string>
+    <string name="scan_prompt">Scan the code</string>
 </resources>
