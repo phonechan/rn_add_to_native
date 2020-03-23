@@ -44,8 +44,11 @@ public class MiniListRecyclerViewAdapter extends RecyclerView.Adapter<MiniListRe
 
         if (miniAppInfo != null) {
 //            Glide.with(mContext).load(miniAppInfo.getIcon_uri()).centerCrop().into(holder.appIcon);
-            glideImage(miniAppInfo.getIcon_uri(), holder.appIcon);
-            holder.appName.setText(miniAppInfo.getDisplay_name());
+//            glideImage(miniAppInfo.getIcon_uri(), holder.appIcon);
+//            holder.appName.setText(miniAppInfo.getDisplay_name());
+
+            int srcId = mContext.getResources().getIdentifier("demo" + position, "drawable", mContext.getPackageName());
+            holder.llItem.setBackgroundResource(srcId);
         }
     }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -10,67 +11,28 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <LinearLayout
+        <com.everonet.demo.miniprograms.view.ArcView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
+            android:layout_height="250dp"
+            app:arcHeight="80dp"
+            app:bgColor="@color/colorPrimary" />
+
+        <ImageView
+            android:layout_width="776px"
+            android:layout_height="506px"
+            android:layout_marginTop="-160dp"
             android:onClick="@{holder::scan}"
-            android:orientation="horizontal"
-            android:padding="16dp">
+            android:src="@mipmap/bg_scan" />
 
-            <ImageView
-                android:layout_width="80px"
-                android:layout_height="80px"
-                android:layout_margin="10dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/scan" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="25px"
-                android:text="scan"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/grayLine" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
+        <ImageView
+            android:layout_width="776px"
+            android:layout_height="506px"
             android:onClick="@{holder::startMiniList}"
-            android:orientation="horizontal"
-            android:padding="16dp">
-
-            <ImageView
-                android:id="@+id/iv_mini_logo"
-                android:layout_width="80px"
-                android:layout_height="80px"
-                android:layout_margin="10dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_mini" />
-
-            <TextView
-                android:id="@+id/tx_mini_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="25px"
-                android:text="mini programs"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-        </LinearLayout>
+            android:src="@mipmap/bg_mini" />
 
     </LinearLayout>
 </layout>
