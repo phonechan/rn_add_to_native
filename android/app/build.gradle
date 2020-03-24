@@ -20,7 +20,7 @@ android {
         applicationId "com.everonet.demo.miniprograms"
         minSdkVersion 24
         targetSdkVersion 28
-        versionCode 1
+        versionCode genVersionCode()
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -33,17 +33,13 @@ android {
     signingConfigs {
         release {
             try {
-                storeFile file("../keystore/release.keystore")
-                storePassword "testres"
-                keyAlias "testres"
-                keyPassword "testres"
+                storeFile file("../keystore/demo.keystore")
+                storePassword "cildemo"
+                keyAlias "cildemo"
+                keyPassword "cildemo"
             } catch (ex) {
                 throw new InvalidUserDataException(ex.toString())
             }
-        }
-
-        debug {
-            storeFile file("../keystore/debug.keystore")
         }
     }
 
@@ -55,6 +51,21 @@ android {
             signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "free"
+    productFlavors {
+        demo {
+            dimension "free"
+        }
+    }
+
+    // 批量打包
+    applicationVariants.all { variant ->
+        def flavor = variant.productFlavors[0]
+        variant.outputs.all {
+            outputFileName = "evo_mini_${flavor.name}_v${variant.versionName}_${variant.versionCode}_${variant.buildType.name}.apk"
         }
     }
 
@@ -122,3 +133,9 @@ dependencies {
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-gesture-handler')
 }
+
+def static genVersionCode() {
+    def str = new Date().format("yyyyMMddHH")
+    return Integer.parseInt(str)
+}
+
