@@ -29,28 +29,32 @@
             android:layout_height="wrap_content"
             android:onClick="@{holder::startMiniProgram01}"
             android:text="start mini01 program"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="@{holder::startMiniProgram02}"
             android:text="start mini02 program"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="@{holder::startMiniProgram03}"
             android:text="start mini03 program"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="@{holder::unzip}"
             android:text="unzip"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:visibility="gone" />
 
     </LinearLayout>
 </layout>
