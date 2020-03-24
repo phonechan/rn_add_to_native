@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 project.ext.react = [
         enableHermes: false,  // clean and rebuild if changing
 ]
@@ -103,6 +105,9 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
 
     implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
+
+    implementation "org.permissionsdispatcher:permissionsdispatcher:4.6.0"
+    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:4.6.0"
 
     if (enableHermes) {
         // for RN 0.61+

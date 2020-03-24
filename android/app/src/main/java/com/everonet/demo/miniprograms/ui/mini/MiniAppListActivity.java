@@ -37,6 +37,7 @@ public class MiniAppListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discovery_miniapp);
         ButterKnife.bind(this);
+        mRvMiniApp = findViewById(R.id.rvMiniApp);
         setAdapter();
         loadData();
     }
@@ -89,7 +90,7 @@ public class MiniAppListActivity extends AppCompatActivity {
 //        if (throwable != null)
 //            LogUtils.sf(throwable.getLocalizedMessage());
 //        hideWaitingDialog();
-        Toast.makeText(this, "加载失败", Toast.LENGTH_SHORT);
+        Toast.makeText(this, "加载失败", Toast.LENGTH_SHORT).show();
     }
 
 

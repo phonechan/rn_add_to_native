@@ -92,9 +92,9 @@ public class ApiClient {
                 .readTimeout(60, TimeUnit.SECONDS);
         HttpCommonInterceptor commonInterceptor = new HttpCommonInterceptor.Builder().build();
         builder.addInterceptor(commonInterceptor);
-        if (socketFactory != null) {
-            builder.sslSocketFactory(socketFactory);
-        }
+//        if (socketFactory != null) {
+//            builder.sslSocketFactory(socketFactory);
+//        }
 
         builder.addNetworkInterceptor(new StethoInterceptor());
 
